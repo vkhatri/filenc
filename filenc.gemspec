@@ -1,7 +1,7 @@
 spec = Gem::Specification.new do |s|
   s.name = 'filenc'
   s.version = "0.0.1"
-  s.author = ["Virender Khatri"]
+  s.authors = ["Virender Khatri"]
   s.date = '2013-01-27'
   s.platform = Gem::Platform::RUBY
   s.summary = 'File Encryption'
