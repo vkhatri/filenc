@@ -13,8 +13,8 @@ class Filenc
     @algo = 'AES-256-CBC'
     @file = o[:file]
     @opt = o
-    raise "initialize @key and @iv values (@iv>15,@key>31 for AES-256-CBS) in filenc.rb" if @key == '' or @iv == '' 
-    raise "initialize @iv>15 & @key>31 for AES-256-CBS in filenc.rb" if @algo == 'AES-256-CBC' and ( @key.length < 32 or @iv.length < 16 )
+    raise "initialize @key and @iv values (@iv>15,@key>31 for AES-256-CBS)" if @key == '' or @iv == '' 
+    raise "initialize @iv>15 & @key>31 for AES-256-CBS" if @algo == 'AES-256-CBC' and ( @key.length < 32 or @iv.length < 16 )
   end
 
   def enc
