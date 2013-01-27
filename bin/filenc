@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+require 'filenc'
+require 'optparse'
+
+begin
+  trap(:INT){ puts "\nExit on User INIT"; exit 0}
+
+  o = {}
+  o[:user]=`logname`
+  o[:user].chomp!
+  userid= %x[id -u #{o[:user]}]
+  userid.to_s.chomp!
+  o[:userid] = userid.to_i
+  groupid=%x[id -g #{o[:user]}]
+  groupid.to_s.chomp!
+  o[:groupid] = groupid.to_i
+
+  OptionParser.new do |opts|
+    opts.on("-h", "--help", "help") { |h| o[:help] = true }
+    opts.on("-e", "--encrypt", "decrypt") { |h| o[:encrypt] = true }
+    opts.on("-d", "--decrypt", "decrypt") { |h| o[:decrypt] = true }
+    opts.on("-f", "--file [OPTIONAL]", "file") { |r| o[:file] = r }
+  end.parse!
+
+  o[:argv] = ARGV
+
+  helptxt = "filenc is an Utility to encrypt/decrypt file using AES-256 bit encryption
+
+    # Encrypt a file:
+        filenc -f filetoencrypt -e
+    # Decrypt a file encrypted using filenc: 
+        filenc -f filetodecrypt -d" 
+
+  if o[:help]
+    puts helptxt
+
+  elsif o[:file] and o[:encrypt]
+    raise ArgumentError, "select --decrypt or --encrypt" if o[:decrypt]
+    raise ArgumentError, "file does not exists '#{o[:file]}'" if ! File.exists?(o[:file])
+    Filenc.new(o).enc
+
+  elsif o[:file] and o[:decrypt]
+    raise ArgumentError, "select --encrypt or --decrypt" if o[:encrypt]
+    raise ArgumentError, "file does not exists '#{o[:file]}'" if ! File.exists?(o[:file])
+    Filenc.new(o).dec
+
+  else
+    puts helptxt
+  end
+end
