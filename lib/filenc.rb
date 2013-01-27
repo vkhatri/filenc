@@ -3,15 +3,19 @@ require 'openssl'
 
 class Filenc
 
-  attr_reader :key, :algo, :iv, :opt, :file, :color
+  attr_reader :key, :algo, :iv, :file
 
   def initialize(o)
-    @key = '0n#f0x)n#l!0n!sh#quiv@l#ntinth#j8n3l#'
-    @iv = '060//>,#%**12!@54rQu0t#!@$#$WEs09'
+    # Set @key value, e.g. DO NOT BELOW VALUE IN ANY CASE
+    #   @key = '0n#f0x)n#l!0n!sh#quiv@l#ntinth#j8n3l#'
+    @key = ''
+    # Set @iv value, e.g. DO NOT USE BELOW VALUE IN ANY CASE
+    #   @iv = '060//>,#%**12!@54rQu0t#!@$#$WEs09'
+    @iv = ''
+    # Default Algorithm set to AES-256-CBC
     @algo = 'AES-256-CBC'
-    @opt = o
     @file = o[:file]
-    @color = Term::ANSIColor
+    raise, "initialize @key and @iv value first in filenc.rb" if @key == '' or @iv == ''
   end
 
   def enc
