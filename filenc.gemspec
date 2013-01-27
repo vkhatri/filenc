@@ -8,7 +8,5 @@ spec = Gem::Specification.new do |s|
   s.description = "Ruby OpenSSL File Encrypt/Decrypt wrapper"
 # Add your other files here if you make them
   s.files = ["README.md","COPYING","CONTRIBUTORS","CHANGELOG","bin/filenc","lib/filenc.rb"]
-  s.require_paths << 'lib'
-  s.add_dependency 'openssl'
   s.homepage = 'http://rubygems.org/gems/filenc'
 end
