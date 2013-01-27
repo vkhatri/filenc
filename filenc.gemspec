@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name = 'filenc'
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.authors = ["Virender Khatri"]
   s.date = '2013-01-27'
   s.platform = Gem::Platform::RUBY

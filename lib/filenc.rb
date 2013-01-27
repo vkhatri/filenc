@@ -33,7 +33,7 @@ class Filenc
       enc << aes.final
     end
     File.chown(opt[:userid],opt[:groupid],encfile)
-    puts "encrypted to file '#{encfile}'")
+    puts "encrypted to file '#{encfile}'"
   end
 
   def dec
@@ -55,7 +55,7 @@ class Filenc
       dec << aes.final
     end
     File.chown(opt[:userid],opt[:groupid],decfile)
-    puts "decrypted to file '#{decfile}'")
+    puts "decrypted to file '#{decfile}'"
   end
 
 end 
