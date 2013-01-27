@@ -3,19 +3,18 @@ require 'openssl'
 
 class Filenc
 
-  attr_reader :key, :algo, :iv, :file
+  attr_reader :key, :algo, :iv, :file, :opt
 
   def initialize(o)
-    # Set @key value, e.g. DO NOT BELOW VALUE IN ANY CASE
-    #   @key = '0n#f0x)n#l!0n!sh#quiv@l#ntinth#j8n3l#'
+    # Set Strong phrase value for @key > 32 and @iv > 16
     @key = ''
-    # Set @iv value, e.g. DO NOT USE BELOW VALUE IN ANY CASE
-    #   @iv = '060//>,#%**12!@54rQu0t#!@$#$WEs09'
     @iv = ''
     # Default Algorithm set to AES-256-CBC
     @algo = 'AES-256-CBC'
     @file = o[:file]
-    raise, "initialize @key and @iv value first in filenc.rb" if @key == '' or @iv == ''
+    @opt = o
+    raise "initialize @key and @iv values (@iv>15,@key>31 for AES-256-CBS) in filenc.rb" if @key == '' or @iv == '' 
+    raise "initialize @iv>15 & @key>31 for AES-256-CBS in filenc.rb" if @algo == 'AES-256-CBC' and ( @key.length < 32 or @iv.length < 16 )
   end
 
   def enc
