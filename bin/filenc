@@ -25,12 +25,12 @@ begin
 
   o[:argv] = ARGV
 
-  helptxt = "filenc is an Utility to encrypt/decrypt file using AES-256 bit encryption
+  helptxt = "A simple ruby utility to encrypt/decrypt file using OpenSSL
 
     # Encrypt a file:
-        filenc -f filetoencrypt -e
+        filenc --encrypt[-e] --file[-f] filetoencrypt 
     # Decrypt a file encrypted using filenc: 
-        filenc -f filetodecrypt -d" 
+        filenc --decrypt[-d] --file filetodecrypt " 
 
   if o[:help]
     puts helptxt
